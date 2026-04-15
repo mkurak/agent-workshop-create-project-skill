@@ -293,7 +293,7 @@ Create `.mcp.json` at project root for codebase-memory-mcp integration:
 
 This provides knowledge graph indexing of the entire codebase — function relationships, call chains, dependency mapping. Agents can query "who calls this?" and get precise answers instead of scanning files.
 
-### Phase 3 — Build and Verify
+### Phase 3 — Build and Start
 
 1. **Build .NET solution** inside Docker:
    ```bash
@@ -305,23 +305,24 @@ This provides knowledge graph indexing of the entire codebase — function relat
    docker compose up -d
    ```
 
-3. **Wait for health checks** — all services must be healthy/running
+3. **Wait 30-60 seconds** for services to stabilize (boot, migrate, connect).
 
-4. **Verify endpoints:**
-   - `GET /api/health/ping` → 200 OK `{"message":"pong"}`
-   - `GET /swagger` → 200 OK (Swagger UI)
-
-5. **Index codebase for code intelligence:**
+4. **Index codebase for code intelligence** (if codebase-memory installed):
    ```bash
    codebase-memory index --path .
    ```
-   If codebase-memory is not installed, note it in the report as optional setup.
 
-6. **Report to user:**
-   - Number of services running
-   - All endpoint URLs and UI dashboards
-   - Admin test credentials (admin@test.com / Admin123!)
-   - Code intelligence status (indexed / not installed)
+### Phase 4 — System Verification
+
+**Invoke `/verify-system` skill.** This runs the full 4-level end-to-end verification:
+- Level 1: All containers running
+- Level 2: All ports accessible
+- Level 3: All applications healthy (meaningful responses)
+- Level 4: All pipelines working (logging, email, auth, socket, worker, redis, storage)
+
+**The project is NOT ready until `/verify-system` reports ALL PASS.** If any test fails, fix the issue and re-run verification.
+
+See `/verify-system` skill for full details on what is checked and how.
    - Any issues found
 
 ### Phase 4 — Git Initialize
