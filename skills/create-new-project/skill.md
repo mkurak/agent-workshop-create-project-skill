@@ -272,6 +272,23 @@ app/
 └── backlog.md                           ← Empty, ready for deferred items
 ```
 
+#### 2.7 Code Intelligence (.mcp.json)
+
+Create `.mcp.json` at project root for codebase-memory-mcp integration:
+
+```json
+{
+  "mcpServers": {
+    "codebase-memory": {
+      "command": "codebase-memory",
+      "args": ["--project-root", "."]
+    }
+  }
+}
+```
+
+This provides knowledge graph indexing of the entire codebase — function relationships, call chains, dependency mapping. Agents can query "who calls this?" and get precise answers instead of scanning files.
+
 ### Phase 3 — Build and Verify
 
 1. **Build .NET solution** inside Docker:
@@ -290,10 +307,17 @@ app/
    - `GET /api/health/ping` → 200 OK `{"message":"pong"}`
    - `GET /swagger` → 200 OK (Swagger UI)
 
-5. **Report to user:**
+5. **Index codebase for code intelligence:**
+   ```bash
+   codebase-memory index --path .
+   ```
+   If codebase-memory is not installed, note it in the report as optional setup.
+
+6. **Report to user:**
    - Number of services running
-   - All endpoint URLs
+   - All endpoint URLs and UI dashboards
    - Admin test credentials (admin@test.com / Admin123!)
+   - Code intelligence status (indexed / not installed)
    - Any issues found
 
 ### Phase 4 — Git Initialize
