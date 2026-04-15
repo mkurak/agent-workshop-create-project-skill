@@ -269,7 +269,11 @@ app/
 │   ├── coding-rules-system.md
 │   └── documentation-workflow.md
 ├── brain-storms/                        ← Empty, ready for brainstorms
-└── backlog.md                           ← Empty, ready for deferred items
+├── backlog.md                           ← Empty, ready for deferred items
+├── wiki/                                ← Project knowledge base (living)
+│   └── index.md                         ← Auto-maintained table of contents
+├── agent-memory/                        ← Per-agent learning history
+└── journal/                             ← Inter-agent communication
 ```
 
 #### 2.7 Code Intelligence (.mcp.json)
