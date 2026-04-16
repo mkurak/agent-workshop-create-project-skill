@@ -312,27 +312,43 @@ This provides knowledge graph indexing of the entire codebase — function relat
    codebase-memory index --path .
    ```
 
-### Phase 4 — System Verification
+### Phase 4 — System Verification (MANDATORY skill invocation)
 
-**Invoke `/verify-system` skill.** This runs the full 4-level end-to-end verification:
+**This is a HARD requirement.** You MUST call the `Skill` tool with `verify-system` here. Do NOT run the verification commands manually as a separate flow — the Skill tool call is what makes this step auditable for the user. The user explicitly relies on seeing the skill's invocation as proof that verification ran.
+
+```
+Skill(skill="verify-system")
+```
+
+The skill returns markdown instructions for a 4-level end-to-end check:
 - Level 1: All containers running
 - Level 2: All ports accessible
 - Level 3: All applications healthy (meaningful responses)
 - Level 4: All pipelines working (logging, email, auth, socket, worker, redis, storage)
 
-**The project is NOT ready until `/verify-system` reports ALL PASS.** If any test fails, fix the issue and re-run verification.
+After invoking the skill:
+1. Execute every check the skill describes (the skill is a script — you are the runtime).
+2. Collect results level-by-level.
+3. **Show the user the final verification report block** (the boxed `╔══...══╗` summary the skill defines) before moving on.
 
-See `/verify-system` skill for full details on what is checked and how.
-   - Any issues found
+**The project is NOT ready until the report shows ALL PASS.** If any test fails:
+- Diagnose the root cause (don't paper over it)
+- Fix it
+- Re-invoke the skill
+- Show the new report
 
-### Phase 4 — Git Initialize
+Do not proceed to Phase 5 until verification is green and the user has seen the report.
+
+### Phase 5 — Git Initialize
 
 ```bash
 cd {project-directory}
-git init
+git init   # only if not already a git repo
 git add -A
 git commit -m "feat: initial project setup with full infrastructure"
 ```
+
+If the directory was already a git repo (e.g. user pre-cloned an empty remote), skip `git init` and just commit on top of the existing history.
 
 ## Important Rules
 
