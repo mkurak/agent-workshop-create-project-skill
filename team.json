@@ -1,5 +1,27 @@
 {
-  "name": "create-project-skill",
+  "schemaVersion": 1,
+  "name": "create-project",
   "version": "1.0.0",
-  "description": "Scaffold complete production-ready projects with a single command."
+  "description": "Scaffold complete production-ready projects with a single command: .NET, Docker, Postgres, RabbitMQ, Redis, Elasticsearch, auth, logging pipeline.",
+  "author": {
+    "name": "AgentTeamLand",
+    "url": "https://github.com/agentteamland"
+  },
+  "license": "MIT",
+  "keywords": ["scaffold", "new-project", "bootstrap", "docker", "dotnet"],
+  "repository": "https://github.com/agentteamland/create-project",
+  "homepage": "https://github.com/agentteamland",
+  "agents": [],
+  "skills": [
+    { "name": "create-new-project", "description": "/create-new-project [Name] — 5-phase scaffold: gather info, create structure, build, verify (/verify-system mandatory), git init" }
+  ],
+  "rules": [],
+  "extends": null,
+  "excludes": [],
+  "dependencies": {
+    "core": "^1.0.0"
+  },
+  "requires": {
+    "atl": ">=0.1.0"
+  }
 }
