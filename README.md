@@ -5,10 +5,10 @@ Scaffold a complete production-ready project with a single command. In 5 minutes
 ## Installation
 
 ```bash
-/team install https://github.com/mkurak/agent-workshop-create-project-skill.git
+/team install https://github.com/agentteamland/create-project.git
 ```
 
-> Requires [Agent Team Manager](https://github.com/mkurak/agent-workshop-agent-team-manager-skill) to be installed first.
+> Requires [Agent Team Manager](https://github.com/agentteamland/team-manager) to be installed first.
 
 ## Usage
 
@@ -76,7 +76,7 @@ All business logic lives in the API. Everything else is a bridge.
 
 ## After Creation
 
-The skeleton is ready. Now use the [Software Project Team](https://github.com/mkurak/agent-workshop-software-project-team) agents to build features:
+The skeleton is ready. Now use the [Software Project Team](https://github.com/agentteamland/software-project-team) agents to build features:
 
 - **API Agent** — add features (Command/Handler/Validator/Endpoint)
 - **Flutter Agent** — build mobile screens

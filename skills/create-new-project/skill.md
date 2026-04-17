@@ -95,16 +95,16 @@ Check if `.claude/.team-installs.json` exists. If not, ask:
 Which team should be installed for this project?
 ```
 
-**Auto-detection:** Check `~/.claude/repos/mkurak/` for directories containing `team.json` with agents. List them as options.
+**Auto-detection:** Check `~/.claude/repos/agentteamland/` for directories containing `team.json` with agents. List them as options.
 
 If no cached teams found, ask for a git repo URL:
 ```
-Enter the team repo URL (e.g., https://github.com/mkurak/agent-workshop-software-project-team.git)
+Enter the team repo URL (e.g., https://github.com/agentteamland/software-project-team.git)
 ```
 
 If `--team <url>` was passed as argument, use that directly without asking.
 
-**Install the team:** Run `/team install <url>` which clones to `~/.claude/repos/mkurak/` and symlinks agents/skills/rules into the project's `.claude/`.
+**Install the team:** Run `/team install <url>` which clones to `~/.claude/repos/agentteamland/` and symlinks agents/skills/rules into the project's `.claude/`.
 
 ### Phase 2 — Create Project Structure
 
